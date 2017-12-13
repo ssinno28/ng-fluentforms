@@ -9,6 +9,5 @@ export class Fields {
 
   field(name: string): void {
     let returnObj: Field;
-    returnObj.validations = new Validations();
   }
 }
