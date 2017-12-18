@@ -3,7 +3,6 @@ import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {BaseService} from './base.service';
 import {Entity} from './entity.interface';
-import {SelectItem} from './selectitem.interface';
 import {Mixin} from './mixins/mixin';
 import {Fields} from './mixins/field.mixin';
 
