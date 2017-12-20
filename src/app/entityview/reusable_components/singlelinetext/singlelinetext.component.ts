@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-singlelinetext',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./singlelinetext.component.css']
 })
 export class SingleLineTextComponent implements OnInit {
+
+  @Input()
+  placeholderTxt: string;
 
   constructor() { }
 

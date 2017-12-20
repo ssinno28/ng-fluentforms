@@ -2,18 +2,26 @@ import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, Validators} from '@angular/forms';
 import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
+import {ComponentFactoryResolver, Type, ViewContainerRef} from '@angular/core';
 
 export class Field {
   public name: string;
-  public editor: any;
   public validations: Validation[];
 
-  constructor() {
+  constructor(private _viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
     this.validations = new Array<Validation>();
   }
 
   singleline(placeholderTxt: string): void {
-    this.editor = typeof(SingleLineTextComponent);
+    const component = this.createComponent(SingleLineTextComponent) as SingleLineTextComponent;
+    component.placeholderTxt = placeholderTxt;
+  }
+
+  createComponent(component: any) {
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
+    const dynamicComponent = this._viewContainerRef.createComponent(componentFactory).instance;
+
+    return dynamicComponent;
   }
 
   required(message: string): Field {
