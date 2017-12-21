@@ -3,13 +3,10 @@ import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {BaseService} from './base.service';
 import {Entity} from './entity.interface';
-import {Mixin} from './mixins/mixin';
-import {Fields} from './mixins/field.mixin';
 
 declare var $: any;
 
-@Mixin([Fields])
-export class BaseFormComponent<T extends Entity> implements OnInit, Fields {
+export class BaseFormComponent<T extends Entity> implements OnInit {
 
   public submitted: boolean;
   public events: any[] = [];
