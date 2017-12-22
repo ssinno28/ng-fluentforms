@@ -6,7 +6,7 @@ import {Http} from '@angular/http';
 @Injectable()
 export class TestService extends BaseService<Test> {
 
-  constructor(public http: Http, public url: string) {
-    super(http, url);
+  constructor(public http: Http) {
+    super(http, '/api/tests');
   }
 }

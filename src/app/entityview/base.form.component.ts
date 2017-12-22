@@ -1,8 +1,9 @@
-﻿import {Component, OnInit} from '@angular/core';
+﻿import {Component, ComponentFactoryResolver, OnInit, ViewContainerRef} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {BaseService} from './base.service';
 import {Entity} from './entity.interface';
+import {Field} from './models/field.class';
 
 declare var $: any;
 
@@ -13,9 +14,12 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
   public id: any = null;
   public item: T;
   public entityForm: FormGroup;
+  public fields: Field[];
 
   constructor(public service: BaseService<T>,
-              public route: ActivatedRoute) {
+              public route: ActivatedRoute,
+              public componentFactoryResolver: ComponentFactoryResolver,
+              public viewContainerRef: ViewContainerRef) {
 
     this.id = route.snapshot.params['id'];
   }
@@ -27,6 +31,14 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
   }
 
   onPatch(item: T): void {
+  }
+
+  field(name: string): Field {
+    const field = new Field(this.viewContainerRef, this.componentFactoryResolver, this.entityForm);
+    field.name = name;
+
+    this.fields.push(field);
+    return field;
   }
 
   ngOnInit(): void {

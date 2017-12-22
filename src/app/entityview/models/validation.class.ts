@@ -1,6 +1,6 @@
-import {Validators} from '@angular/forms';
+import {ValidatorFn, Validators} from '@angular/forms';
 
 export class Validation {
-  validator: Validators;
+  validator: ValidatorFn;
   message: string;
 }

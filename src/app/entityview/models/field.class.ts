@@ -1,20 +1,30 @@
 import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
-import {AbstractControl, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
-import {ComponentFactoryResolver, Type, ViewContainerRef} from '@angular/core';
+import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 export class Field {
   public name: string;
+  public value: any;
   public validations: Validation[];
 
-  constructor(private _viewContainerRef: ViewContainerRef, private _componentFactoryResolver: ComponentFactoryResolver) {
-    this.validations = new Array<Validation>();
+  constructor(private _viewContainerRef: ViewContainerRef,
+              private _componentFactoryResolver: ComponentFactoryResolver,
+              private _formGroup: FormGroup) {
   }
 
   singleline(placeholderTxt: string): void {
     const component = this.createComponent(SingleLineTextComponent) as SingleLineTextComponent;
     component.placeholderTxt = placeholderTxt;
+
+    this._formGroup.addControl(this.name, new FormControl(this.value, this.getValidators()));
+  }
+
+  getValidators(): ValidatorFn {
+    return Validators.compose(this.validations.map((validation) => {
+      return validation.validator;
+    }));
   }
 
   createComponent(component: any) {
