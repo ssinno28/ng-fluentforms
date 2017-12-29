@@ -12,11 +12,14 @@ export class Field {
   constructor(private _viewContainerRef: ViewContainerRef,
               private _componentFactoryResolver: ComponentFactoryResolver,
               private _formGroup: FormGroup) {
+    this.validations = new Array<Validation>();
   }
 
   singleline(placeholderTxt: string): void {
     const component = this.createComponent(SingleLineTextComponent) as SingleLineTextComponent;
     component.placeholderTxt = placeholderTxt;
+    component.fieldName = this.name;
+    component.formGroup = this._formGroup;
 
     this._formGroup.addControl(this.name, new FormControl(this.value, this.getValidators()));
   }

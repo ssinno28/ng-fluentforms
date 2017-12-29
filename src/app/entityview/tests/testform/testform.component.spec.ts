@@ -5,6 +5,8 @@ import {HttpModule} from '@angular/http';
 import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {TestRoutingModule} from '../routing';
+import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -12,13 +14,11 @@ describe('TestFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestFormComponent],
-      imports: [HttpModule, CommonModule, RouterModule, TestRoutingModule],
+      declarations: [TestFormComponent, SingleLineTextComponent],
+      imports: [HttpModule, CommonModule, RouterModule, TestRoutingModule, FormsModule, ReactiveFormsModule],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     })
       .compileComponents();
-
-    
   }));
 
   beforeEach(() => {

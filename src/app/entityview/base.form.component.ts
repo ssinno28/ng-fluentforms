@@ -1,4 +1,4 @@
-﻿import {Component, ComponentFactoryResolver, OnInit, ViewContainerRef} from '@angular/core';
+﻿import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {BaseService} from './base.service';
@@ -8,6 +8,7 @@ import {Field} from './models/field.class';
 declare var $: any;
 
 export class BaseFormComponent<T extends Entity> implements OnInit {
+  @ViewChild('dynamicInsert', { read: ViewContainerRef }) dynamicInsert: ViewContainerRef;
 
   public submitted: boolean;
   public events: any[] = [];
@@ -19,9 +20,11 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
   constructor(public service: BaseService<T>,
               public route: ActivatedRoute,
               public componentFactoryResolver: ComponentFactoryResolver,
-              public viewContainerRef: ViewContainerRef) {
+              private _formBuilder: FormBuilder) {
 
     this.id = route.snapshot.params['id'];
+    this.fields = new Array<Field>();
+    this.entityForm = _formBuilder.group({});
   }
 
   onInit(): void {
@@ -34,7 +37,8 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
   }
 
   field(name: string): Field {
-    const field = new Field(this.viewContainerRef, this.componentFactoryResolver, this.entityForm);
+    const field = new Field(this.dynamicInsert, this.componentFactoryResolver, this.entityForm);
+
     field.name = name;
 
     this.fields.push(field);
