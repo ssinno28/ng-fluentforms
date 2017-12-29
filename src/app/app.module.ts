@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {EntityViewModule} from './entityview/entityview.module';
+import {HttpModule} from '@angular/http';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import {EntityViewModule} from './entityview/entityview.module';
   ],
   imports: [
     BrowserModule,
-    EntityViewModule
+    EntityViewModule,
+    HttpModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

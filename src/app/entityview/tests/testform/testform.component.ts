@@ -7,7 +7,8 @@ import {ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-testform',
   templateUrl: './testform.component.html',
-  styleUrls: ['./testform.component.css']
+  styleUrls: ['./testform.component.css'],
+  providers: [TestService]
 })
 export class TestFormComponent extends BaseFormComponent<Test> {
 
