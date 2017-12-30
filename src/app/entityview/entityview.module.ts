@@ -4,6 +4,7 @@ import {SingleLineTextComponent} from './reusable_components/singlelinetext/sing
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
     HttpModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   declarations: [
     SingleLineTextComponent

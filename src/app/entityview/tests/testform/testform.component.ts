@@ -29,6 +29,7 @@ export class TestFormComponent extends BaseFormComponent<Test> {
   onInit() {
     this.field('title')
       .required('The title is required!')
+      .min('Title has to be at least 50 characters!', 50)
       .singleline('Title');
 
     this.field('name')

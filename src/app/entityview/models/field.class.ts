@@ -6,6 +6,7 @@ import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 export class Field {
   public name: string;
+  public fieldLabel: string;
   public value: any;
   public validations: Validation[];
 
@@ -15,11 +16,19 @@ export class Field {
     this.validations = new Array<Validation>();
   }
 
-  singleline(placeholderTxt: string): void {
+  label(label: string): Field {
+    this.fieldLabel = label;
+    return this;
+  }
+
+  singleline(placeholderTxt: string, srOnly: boolean = true): void {
     const component = this.createComponent(SingleLineTextComponent) as SingleLineTextComponent;
     component.placeholderTxt = placeholderTxt;
     component.fieldName = this.name;
     component.formGroup = this._formGroup;
+    component.label = this.fieldLabel;
+    component.validations = this.validations;
+    component.srOnly = srOnly;
 
     this._formGroup.addControl(this.name, new FormControl(this.value, this.getValidators()));
   }

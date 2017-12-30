@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {TestRoutingModule} from '../routing';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -15,8 +16,16 @@ describe('TestFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestFormComponent, SingleLineTextComponent],
-      imports: [HttpModule, CommonModule, RouterModule, TestRoutingModule, FormsModule, ReactiveFormsModule],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
+      imports: [
+        HttpModule,
+        CommonModule,
+        RouterModule,
+        TestRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule
+      ],
+      providers: [{provide: APP_BASE_HREF, useValue: '/'}]
     })
       .compileComponents();
   }));

@@ -1,5 +1,14 @@
-<div [formGroup]="formGroup">
-  <input type="text" [placeholder]="placeholderTxt" [formControlName]="fieldName"/>
+<div [ngClass]="{'has-error': hasErrors}" class="form-group" [formGroup]="formGroup">
+  <label [ngClass]="{'sr-only': srOnly}" class="col-xs-12 col-sm-2 control-label">
+    {{label}}
+  </label>
+
+  <div class="col-xs-12 col-sm-10">
+    <input (keyup)="isValid()" type="text" [placeholder]="placeholderTxt" [formControlName]="fieldName"/>
+    <div [hidden]="!hasErrors" class="col-xs-12 col-sm-10 col-sm-offset-2 errors">
+      <span *ngFor="let error of errors" class="help-block">
+        {{error.message}}
+      </span>
+    </div>
+  </div>
 </div>
-
-
