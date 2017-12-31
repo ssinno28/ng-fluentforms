@@ -4,7 +4,7 @@
   </label>
 
   <div class="col-xs-12 col-sm-10">
-    <input type="text" [placeholder]="placeholderTxt" [formControlName]="fieldName"/>
+    <ng-template #dynamicComponent></ng-template>
     <div *ngIf="errors.length > 0;" class="col-xs-12 col-sm-10 col-sm-offset-2 errors">
       <span *ngFor="let error of errors;" class="help-block">
         {{error.message}}

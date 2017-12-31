@@ -1,12 +1,12 @@
 import {BaseService} from '../base.service';
 import {Test} from './test.interface';
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class TestService extends BaseService<Test> {
 
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
     super(http, '/api/tests');
   }
 }

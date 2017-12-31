@@ -1,22 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SingleLineTextComponent} from './reusable_components/singlelinetext/singlelinetext.component';
-import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BaseReusableComponent} from './reusable_components/basereusable/basereusable.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule
   ],
   declarations: [
-    SingleLineTextComponent
+    SingleLineTextComponent,
+    BaseReusableComponent
   ],
   entryComponents: [
     SingleLineTextComponent

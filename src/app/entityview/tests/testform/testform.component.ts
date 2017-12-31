@@ -28,11 +28,12 @@ export class TestFormComponent extends BaseFormComponent<Test> {
 
   onInit() {
     this.field('title')
+      .label('Title')
       .required('The title is required!')
-      .min('Title has to be at least 50 characters!', 50)
       .singleline('Title');
 
     this.field('name')
+      .label('Name')
       .required('The name is required!')
       .singleline('Name');
   }

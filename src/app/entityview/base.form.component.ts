@@ -38,7 +38,6 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
 
   field(name: string): Field {
     const field = new Field(this.dynamicInsert, this.componentFactoryResolver, this.entityForm);
-
     field.name = name;
 
     this.fields.push(field);
@@ -68,7 +67,7 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
       if (this.id == null) {
         this.service.create(model)
           .then(result => {
-            this.id = result.json();
+            this.id = result;
 
             if (this.id !== null && this.id !== 0) {
               this.showNotification('Item successfully created!', 'success');
@@ -81,7 +80,7 @@ export class BaseFormComponent<T extends Entity> implements OnInit {
         model.id = parseInt(this.id);
         this.service.update(model)
           .then(result => {
-            const success = result.json();
+            const success = result;
             if (success) {
               this.showNotification('Item successfully updated!', 'success');
             } else {

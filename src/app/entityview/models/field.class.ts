@@ -6,18 +6,17 @@ import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 export class Field {
   public name: string;
-  public fieldLabel: string;
-  public value: any;
-  public validations: Validation[];
+  private _fieldLabel: string;
+  private _value: any;
+  private _validations: Validation[] = [];
 
   constructor(private _viewContainerRef: ViewContainerRef,
               private _componentFactoryResolver: ComponentFactoryResolver,
               private _formGroup: FormGroup) {
-    this.validations = new Array<Validation>();
   }
 
   label(label: string): Field {
-    this.fieldLabel = label;
+    this._fieldLabel = label;
     return this;
   }
 
@@ -26,15 +25,15 @@ export class Field {
     component.placeholderTxt = placeholderTxt;
     component.fieldName = this.name;
     component.formGroup = this._formGroup;
-    component.label = this.fieldLabel;
-    component.validations = this.validations;
+    component.label = this._fieldLabel;
+    component.validations = this._validations;
     component.srOnly = srOnly;
 
-    this._formGroup.addControl(this.name, new FormControl(this.value, this.getValidators()));
+    this._formGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
   }
 
   getValidators(): ValidatorFn {
-    return Validators.compose(this.validations.map((validation) => {
+    return Validators.compose(this._validations.map((validation) => {
       return validation.validator;
     }));
   }
@@ -51,7 +50,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.required;
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -60,7 +59,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.min(min);
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -69,7 +68,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.max(max);
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -78,7 +77,7 @@ export class Field {
     validation.message = message;
     validation.validator = CustomValidators.isNumeric;
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -87,7 +86,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.pattern('^[a-zA-Z0-9]+$');
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -96,7 +95,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.pattern('^[a-zA-Z]+$');
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
@@ -105,7 +104,7 @@ export class Field {
     validation.message = message;
     validation.validator = Validators.pattern('^((([a-z]|\\d|[!#\\$%&\'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\\.([a-z]|\\d|[!#\\$%&\'\\*\\+\\-\\/=\\?\\^_`{\\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\\d|-|\\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\\d|-|\\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\\.?$');
 
-    this.validations.push(validation);
+    this._validations.push(validation);
     return this;
   }
 
