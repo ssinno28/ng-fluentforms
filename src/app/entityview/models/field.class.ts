@@ -1,48 +1,47 @@
 import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
+import {Editor} from '../editors/base.editor';
 
 export class Field {
   public name: string;
+  public viewContainerRef: ViewContainerRef;
+  public fieldFormGroup: FormGroup;
+  public componentFactoryResolver: ComponentFactoryResolver;
+
   private _fieldLabel: string;
+  private _srOnly: boolean;
   private _value: any;
   private _validations: Validation[] = [];
 
-  constructor(private _viewContainerRef: ViewContainerRef,
-              private _componentFactoryResolver: ComponentFactoryResolver,
-              private _formGroup: FormGroup) {
-  }
-
-  label(label: string): Field {
+  label(label: string, srOnly: boolean = true): Field {
     this._fieldLabel = label;
+    this._srOnly = srOnly;
     return this;
   }
 
-  singleline(placeholderTxt: string, srOnly: boolean = true): void {
-    const component = this.createComponent(SingleLineTextComponent) as SingleLineTextComponent;
-    component.placeholderTxt = placeholderTxt;
-    component.fieldName = this.name;
-    component.formGroup = this._formGroup;
-    component.label = this._fieldLabel;
-    component.validations = this._validations;
-    component.srOnly = srOnly;
+  formGroup(formGroup: FormGroup): Field {
+    this.fieldFormGroup = formGroup;
+    return this;
+  }
 
-    this._formGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
+  editor(editorType: any, options: any): void {
+    options.fieldName = this.name;
+    options.formGroup = this.fieldFormGroup;
+    options.label = this._fieldLabel;
+    options.validations = this._validations;
+    options.srOnly = this._srOnly;
+
+    const fieldEditor = new editorType();
+    fieldEditor.create(this.componentFactoryResolver, this.viewContainerRef, options);
+    this.fieldFormGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
   }
 
   getValidators(): ValidatorFn {
     return Validators.compose(this._validations.map((validation) => {
       return validation.validator;
     }));
-  }
-
-  createComponent(component: any) {
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component);
-    const dynamicComponent = this._viewContainerRef.createComponent(componentFactory).instance;
-
-    return dynamicComponent;
   }
 
   required(message: string): Field {

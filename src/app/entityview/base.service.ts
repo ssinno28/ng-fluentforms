@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import {Filter} from './filter';
-import {FilterResponse} from './FilterResponse';
+import {FilterResponse} from './filterresponse';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 

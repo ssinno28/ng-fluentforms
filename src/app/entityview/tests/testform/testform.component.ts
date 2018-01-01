@@ -1,13 +1,10 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 import {BaseFormComponent} from '../../base.form.component';
-import {Test} from '../test.interface';
-import {TestService} from '../test.service';
-import {ActivatedRoute} from '@angular/router';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
+import {SingleLineEditor} from '../../editors/singleline.editor';
 
 @Component({
-  providers: [TestService],
   entryComponents: [
     SingleLineTextComponent
   ],
@@ -16,25 +13,17 @@ import {FormBuilder} from '@angular/forms';
   '<button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>' +
   '</form>'
 })
-export class TestFormComponent extends BaseFormComponent<Test> {
-
-  constructor(public service: TestService,
-              public route: ActivatedRoute,
-              public componentFactoryResolver: ComponentFactoryResolver,
+export class TestFormComponent extends BaseFormComponent implements OnInit {
+  constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               _formBuilder: FormBuilder) {
 
-    super(service, route, componentFactoryResolver, _formBuilder);
+    super(componentFactoryResolver, _formBuilder);
   }
 
-  onInit() {
+  ngOnInit(): void {
     this.field('title')
       .label('Title')
       .required('The title is required!')
-      .singleline('Title');
-
-    this.field('name')
-      .label('Name')
-      .required('The name is required!')
-      .singleline('Name');
+      .editor(SingleLineEditor, {placeholderTxt: 'Title'});
   }
 }
