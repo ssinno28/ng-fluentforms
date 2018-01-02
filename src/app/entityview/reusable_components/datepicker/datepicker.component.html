@@ -2,9 +2,19 @@
   <label [ngClass]="{'sr-only': srOnly}" class="col-xs-12 col-sm-2 control-label">
     {{label}}
   </label>
+  <div class="input-group col-xs-12 col-sm-10">
+    <input
+      [displayMonths]="displayMonths"
+      class="form-control"
+      placeholder="yyyy-mm-dd"
+      [formControlName]="fieldName"
+      [name]="fieldName"
+      ngbDatepicker
+      #d="ngbDatepicker">
 
-  <div class="col-xs-12 col-sm-10">
-    <input type="text" class="form-control" [placeholder]="placeholderTxt" [formControlName]="fieldName"/>
+    <button class="input-group-addon" (click)="d.toggle()" type="button">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </button>
     <div *ngIf="errors.length > 0;" class="col-xs-12 col-sm-10 col-sm-offset-2 errors">
       <span *ngFor="let error of errors;" class="help-block">
         {{error.message}}

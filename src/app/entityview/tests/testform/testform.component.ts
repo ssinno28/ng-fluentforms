@@ -3,10 +3,15 @@ import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
 import {SingleLineEditor} from '../../editors/singleline.editor';
+import {SingleLineOptions} from '../../options/singlelineoptions.class';
+import {DatePickerEditor} from '../../editors/datepicker.editor';
+import {DatePickerOptions} from '../../options/datepickeroptions.class';
+import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
 
 @Component({
   entryComponents: [
-    SingleLineTextComponent
+    SingleLineTextComponent,
+    DatePickerComponent
   ],
   template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)">' +
   '<ng-template #dynamicInsert></ng-template>' +
@@ -24,6 +29,15 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
     this.field('title')
       .label('Title')
       .required('The title is required!')
-      .editor(SingleLineEditor, {placeholderTxt: 'Title'});
+      .editor(SingleLineEditor, <SingleLineOptions>({
+        placeholderTxt: 'Title'
+      }));
+
+    this.field('dob')
+      .label('Date of Birth')
+      .required('The date of birth is required!')
+      .editor(DatePickerEditor, <DatePickerOptions>({
+        displayMonths: 1
+      }));
   }
 }

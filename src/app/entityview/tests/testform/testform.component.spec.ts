@@ -8,6 +8,7 @@ import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
+import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -15,7 +16,7 @@ describe('TestFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestFormComponent, SingleLineTextComponent],
+      declarations: [TestFormComponent, SingleLineTextComponent, DatePickerComponent],
       imports: [
         HttpClientModule,
         CommonModule,
@@ -23,7 +24,7 @@ describe('TestFormComponent', () => {
         TestRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule.forRoot()
       ],
       providers: [{provide: APP_BASE_HREF, useValue: '/'}]
     })

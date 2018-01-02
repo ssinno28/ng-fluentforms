@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BaseReusableComponent} from './reusable_components/basereusable/basereusable.component';
 import {HttpClientModule} from '@angular/common/http';
+import { DatePickerComponent } from './reusable_components/datepicker/datepicker.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   declarations: [
     SingleLineTextComponent,
-    BaseReusableComponent
+    BaseReusableComponent,
+    DatePickerComponent
   ],
   entryComponents: [
-    SingleLineTextComponent
+    SingleLineTextComponent,
+    DatePickerComponent
   ],
   exports: [
     CommonModule,
