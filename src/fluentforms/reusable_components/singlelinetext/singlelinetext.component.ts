@@ -7,5 +7,5 @@ import {BaseReusableComponent} from '../basereusable/basereusable.component';
   styleUrls: ['./singlelinetext.component.css']
 })
 export class SingleLineTextComponent extends BaseReusableComponent {
-  placeholderTxt: string;
+  placeholderTxt = '';
 }

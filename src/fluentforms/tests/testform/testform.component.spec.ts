@@ -2,12 +2,12 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TestFormComponent} from './testform.component';
 import {APP_BASE_HREF, CommonModule} from '@angular/common';
-import {TestRoutingModule} from '../routing';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
+import {NumberComponent} from '../../reusable_components/number/number.component';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -15,11 +15,10 @@ describe('TestFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestFormComponent, SingleLineTextComponent, DatePickerComponent],
+      declarations: [TestFormComponent, SingleLineTextComponent, DatePickerComponent, NumberComponent],
       imports: [
         HttpClientModule,
         CommonModule,
-        TestRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         NgbModule.forRoot()

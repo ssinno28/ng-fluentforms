@@ -7,11 +7,15 @@ import {DatePickerOptions} from '../../models/options/datepickeroptions.class';
 import {DatePickerEditor} from '../../models/editors/datepicker.editor';
 import {SingleLineEditor} from '../../models/editors/singleline.editor';
 import {SingleLineOptions} from '../../models/options/singlelineoptions.class';
+import {NumberEditor} from '../../models/editors/number.editor';
+import {NumberOptions} from '../../models/options/numberoptions.class';
+import {NumberComponent} from '../../reusable_components/number/number.component';
 
 @Component({
   entryComponents: [
     SingleLineTextComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    NumberComponent
   ],
   template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)">' +
   '<ng-template #dynamicInsert></ng-template>' +
@@ -38,6 +42,14 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
       .required('The date of birth is required!')
       .editor(DatePickerEditor, <DatePickerOptions>({
         displayMonths: 1
+      }));
+
+    this.field('age')
+      .label('Age')
+      .required('Your age is required!')
+      .editor(NumberEditor, <NumberOptions>({
+        precision: 2,
+        nonNegative: true
       }));
   }
 }

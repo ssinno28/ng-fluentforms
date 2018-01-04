@@ -1,6 +1,6 @@
 ﻿import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { BaseService } from "./base.service";
+import { BaseService } from './base.service';
+import {Observable} from 'rxjs/Observable';
 
 export class BaseResolver<T> implements Resolve<T> {
 

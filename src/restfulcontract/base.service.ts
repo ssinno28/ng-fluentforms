@@ -5,7 +5,7 @@ import {FilterResponse} from './filterresponse';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
-export class BaseService<T> {
+export abstract class BaseService<T> {
 
   constructor(public http: HttpClient, private _url: string) {
   }

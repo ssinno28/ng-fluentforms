@@ -17,7 +17,7 @@ export class BaseFormComponent {
   field(name: string): Field {
     const field = new Field();
     field.name = name;
-    field.viewContainerRef = this.dynamicInsert;
+    field.fieldViewContainerRef = this.dynamicInsert;
     field.fieldFormGroup = this.entityForm;
     field.componentFactoryResolver = this.componentFactoryResolver;
 

@@ -5,7 +5,7 @@ import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 
 export class Field {
   public name: string;
-  public viewContainerRef: ViewContainerRef;
+  public fieldViewContainerRef: ViewContainerRef;
   public fieldFormGroup: FormGroup;
   public componentFactoryResolver: ComponentFactoryResolver;
 
@@ -25,6 +25,11 @@ export class Field {
     return this;
   }
 
+  viewContainerRef(viewContainerRef: ViewContainerRef): Field {
+    this.fieldViewContainerRef = viewContainerRef;
+    return this;
+  }
+
   editor(editorType: any, options: any): void {
     options.fieldName = this.name;
     options.formGroup = this.fieldFormGroup;
@@ -33,7 +38,7 @@ export class Field {
     options.srOnly = this._srOnly;
 
     const fieldEditor = new editorType();
-    fieldEditor.create(this.componentFactoryResolver, this.viewContainerRef, options);
+    fieldEditor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);
     this.fieldFormGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
   }
 

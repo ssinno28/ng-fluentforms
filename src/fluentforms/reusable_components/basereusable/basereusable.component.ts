@@ -1,6 +1,6 @@
 import {OnInit} from '@angular/core';
 import {Validation} from '../../models/validation.class';
-import {FormGroup} from '@angular/forms';
+import {AbstractControl, FormGroup} from '@angular/forms';
 
 export class BaseReusableComponent implements OnInit {
   fieldName: string;
@@ -10,7 +10,7 @@ export class BaseReusableComponent implements OnInit {
   srOnly: boolean;
   errors: Validation[];
 
-  onInit(): void {
+  onInit(ctrl: AbstractControl): void {
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class BaseReusableComponent implements OnInit {
       }
     );
 
-    this.onInit();
+    this.onInit(ctrl);
   }
 
   isValid(): void {
