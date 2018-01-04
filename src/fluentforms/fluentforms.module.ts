@@ -32,5 +32,5 @@ import { DatePickerComponent } from './reusable_components/datepicker/datepicker
     ReactiveFormsModule
   ]
 })
-export class EntityViewModule {
+export class FluentFormsModule {
 }

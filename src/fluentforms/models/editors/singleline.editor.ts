@@ -1,8 +1,8 @@
 import {Editor} from './base.editor';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
-import {IEditor} from './editor.interface';
 import {SingleLineOptions} from '../options/singlelineoptions.class';
+import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
+import {IEditor} from '../../interfaces/editor.interface';
 
 export class SingleLineEditor extends Editor implements IEditor {
   create(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: SingleLineOptions): void {

@@ -1,8 +1,8 @@
 import {Editor} from './base.editor';
-import {IEditor} from './editor.interface';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 import {DatePickerOptions} from '../options/datepickeroptions.class';
-import {DatePickerComponent} from '../reusable_components/datepicker/datepicker.component';
+import {IEditor} from '../../interfaces/editor.interface';
+import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
 
 export class DatePickerEditor extends Editor implements IEditor {
   create(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: DatePickerOptions): void {

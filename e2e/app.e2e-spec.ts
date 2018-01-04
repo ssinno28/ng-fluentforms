@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular-entityview App', () => {
+describe('angular-fluentforms App', () => {
   let page: AppPage;
 
   beforeEach(() => {

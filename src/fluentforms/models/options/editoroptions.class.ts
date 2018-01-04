@@ -1,5 +1,5 @@
 import {FormGroup} from '@angular/forms';
-import {Validation} from '../models/validation.class';
+import {Validation} from '../validation.class';
 
 export abstract class EditorOptions {
   fieldName: string;

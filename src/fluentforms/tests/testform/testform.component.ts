@@ -2,11 +2,11 @@ import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
-import {SingleLineEditor} from '../../editors/singleline.editor';
-import {SingleLineOptions} from '../../options/singlelineoptions.class';
-import {DatePickerEditor} from '../../editors/datepicker.editor';
-import {DatePickerOptions} from '../../options/datepickeroptions.class';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
+import {DatePickerOptions} from '../../models/options/datepickeroptions.class';
+import {DatePickerEditor} from '../../models/editors/datepicker.editor';
+import {SingleLineEditor} from '../../models/editors/singleline.editor';
+import {SingleLineOptions} from '../../models/options/singlelineoptions.class';
 
 @Component({
   entryComponents: [

@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TestFormComponent} from './testform.component';
 import {APP_BASE_HREF, CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
 import {TestRoutingModule} from '../routing';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,7 +19,6 @@ describe('TestFormComponent', () => {
       imports: [
         HttpClientModule,
         CommonModule,
-        RouterModule,
         TestRoutingModule,
         FormsModule,
         ReactiveFormsModule,

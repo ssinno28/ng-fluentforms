@@ -2,7 +2,6 @@ import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
-import {Editor} from '../editors/base.editor';
 
 export class Field {
   public name: string;
