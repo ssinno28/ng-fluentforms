@@ -8,7 +8,7 @@ export class NumberEditor extends Editor implements IEditor {
   create(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: NumberOptions): void {
     const component = this.createComponent(componentFactoryResolver, viewContainerRef, NumberComponent) as NumberComponent;
 
-    component.placeholderTxt = options.placeholderTxt;
+    component.placeholderTxt = options.placeholderTxt === undefined ? '' : options.placeholderTxt;
     component.precision = options.precision;
     component.nonNegative = options.nonNegative;
     component.fieldName = options.fieldName;

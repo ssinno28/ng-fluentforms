@@ -3,18 +3,14 @@
     {{label}}
   </label>
   <div class="input-group col-xs-12 col-sm-10">
-    <input
-      [displayMonths]="displayMonths"
-      class="form-control"
-      placeholder="yyyy-mm-dd"
-      [formControlName]="fieldName"
-      [name]="fieldName"
-      ngbDatepicker
-      #d="ngbDatepicker">
-
-    <button class="input-group-addon" (click)="d.toggle()" type="button">
-      <span class="fa fa-calendar"></span>
-    </button>
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" [id]="fieldName" ngbDropdownToggle>{{selectedText}}</button>
+      <div #dropdown ngbDropdownMenu>
+        <button (click)="itemSelected(item)" class="dropdown-item" *ngFor="let item of selectItems">
+          {{item.text}}
+        </button>
+      </div>
+    </div>
     <div *ngIf="errors.length > 0;" class="col-xs-12 col-sm-10 col-sm-offset-2 errors">
       <span *ngFor="let error of errors;" class="help-block">
         {{error.message}}

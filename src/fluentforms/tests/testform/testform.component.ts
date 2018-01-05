@@ -10,12 +10,16 @@ import {SingleLineOptions} from '../../models/options/singlelineoptions.class';
 import {NumberEditor} from '../../models/editors/number.editor';
 import {NumberOptions} from '../../models/options/numberoptions.class';
 import {NumberComponent} from '../../reusable_components/number/number.component';
+import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
+import {DropdownEditor} from '../../models/editors/dropdown.editor';
+import {DropdownOptions} from '../../models/options/dropdownoptions.class';
 
 @Component({
   entryComponents: [
     SingleLineTextComponent,
     DatePickerComponent,
-    NumberComponent
+    NumberComponent,
+    DropdownComponent
   ],
   template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)">' +
   '<ng-template #dynamicInsert></ng-template>' +
@@ -27,6 +31,9 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
               _formBuilder: FormBuilder) {
 
     super(componentFactoryResolver, _formBuilder);
+  }
+
+  save(value: any, valid: boolean): void {
   }
 
   ngOnInit(): void {
@@ -50,6 +57,23 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
       .editor(NumberEditor, <NumberOptions>({
         precision: 2,
         nonNegative: true
+      }));
+
+    this.field('siblings')
+      .label('Siblings')
+      .editor(DropdownEditor, <DropdownOptions>({
+        placement: '',
+        selectItems: [
+          {
+            text: 'test',
+            value: 0,
+            selected: false
+          },
+          {
+            text: 'test 2',
+            value: 1,
+            selected: true
+          }]
       }));
   }
 }

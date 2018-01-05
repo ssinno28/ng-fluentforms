@@ -8,7 +8,7 @@ export class SingleLineEditor extends Editor implements IEditor {
   create(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: SingleLineOptions): void {
     const component = this.createComponent(componentFactoryResolver, viewContainerRef, SingleLineTextComponent) as SingleLineTextComponent;
 
-    component.placeholderTxt = options.placeholderTxt;
+    component.placeholderTxt = options.placeholderTxt === undefined ? '' : options.placeholderTxt;
     component.fieldName = options.fieldName;
     component.formGroup = options.formGroup;
     component.label = options.label;

@@ -8,6 +8,7 @@ import {BaseReusableComponent} from './reusable_components/basereusable/basereus
 import {HttpClientModule} from '@angular/common/http';
 import {DatePickerComponent} from './reusable_components/datepicker/datepicker.component';
 import {NumberComponent} from './reusable_components/number/number.component';
+import {DropdownComponent} from './reusable_components/dropdown/dropdown.component';
 
 @NgModule({
   imports: [
@@ -22,12 +23,14 @@ import {NumberComponent} from './reusable_components/number/number.component';
     SingleLineTextComponent,
     BaseReusableComponent,
     DatePickerComponent,
-    NumberComponent
+    NumberComponent,
+    DropdownComponent
   ],
   entryComponents: [
     SingleLineTextComponent,
     DatePickerComponent,
-    NumberComponent
+    NumberComponent,
+    DropdownComponent
   ],
   exports: [
     CommonModule,

@@ -2,6 +2,7 @@ import {Component, ElementRef, ViewChild, ViewContainerRef} from '@angular/core'
 import {BaseReusableComponent} from '../basereusable/basereusable.component';
 import {AbstractControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-number',
@@ -9,22 +10,22 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./number.component.css']
 })
 export class NumberComponent extends BaseReusableComponent {
-  @ViewChild('input', {read: ElementRef}) input: ElementRef;
-
   precision?: number;
   nonNegative: boolean;
   step: string;
-  placeholderTxt = '';
+  placeholderTxt: string;
 
   onInit(ctrl: AbstractControl): void {
     this.updateStep();
 
-    ctrl.valueChanges.subscribe(
-      (value: number) => {
-        if (ctrl.dirty) {
-          this.updateNum(value, ctrl);
-        }
-      });
+    ctrl.valueChanges
+      .debounceTime(800)
+      .subscribe(
+        (value: number) => {
+          if (ctrl.dirty && value !== null) {
+            this.updateNum(value, ctrl);
+          }
+        });
   }
 
   updateNum(val: number, ctrl: AbstractControl): void {

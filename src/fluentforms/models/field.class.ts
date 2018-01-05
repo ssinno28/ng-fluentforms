@@ -14,7 +14,7 @@ export class Field {
   private _value: any;
   private _validations: Validation[] = [];
 
-  label(label: string, srOnly: boolean = true): Field {
+  label(label: string, srOnly: boolean = false): Field {
     this._fieldLabel = label;
     this._srOnly = srOnly;
     return this;

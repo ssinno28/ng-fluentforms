@@ -8,6 +8,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
 import {NumberComponent} from '../../reusable_components/number/number.component';
+import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -15,7 +16,12 @@ describe('TestFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestFormComponent, SingleLineTextComponent, DatePickerComponent, NumberComponent],
+      declarations: [
+        TestFormComponent,
+        SingleLineTextComponent,
+        DatePickerComponent,
+        NumberComponent,
+        DropdownComponent],
       imports: [
         HttpClientModule,
         CommonModule,
