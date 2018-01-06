@@ -1,5 +1,5 @@
 import {Editor} from './base.editor';
-import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
+import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
 
 export class SingleLineEditor extends Editor<SingleLineTextComponent> {
   component = SingleLineTextComponent;

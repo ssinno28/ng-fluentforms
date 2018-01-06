@@ -1,7 +1,7 @@
 import {ComponentFactoryResolver, Type, ViewContainerRef} from '@angular/core';
-import {BaseReusableComponent} from '../../reusable_components/basereusable/basereusable.component';
-import {EditorOptions} from '../options/editoroptions.class';
-import {IEditor} from '../../interfaces/editor.interface';
+import {BaseReusableComponent} from '../reusable_components/basereusable/basereusable.component';
+import {EditorOptions} from '../models/options/editoroptions.class';
+import {IEditor} from '../interfaces/editor.interface';
 
 export abstract class Editor<T extends BaseReusableComponent> implements IEditor {
   abstract component: any;

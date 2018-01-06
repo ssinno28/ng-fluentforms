@@ -3,12 +3,12 @@ import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
-import {SingleLineEditor} from '../../models/editors/singleline.editor';
+import {SingleLineEditor} from '../../editors/singleline.editor';
 import {NumberComponent} from '../../reusable_components/number/number.component';
 import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
-import {DatePickerEditor} from '../../models/editors/datepicker.editor';
-import {NumberEditor} from '../../models/editors/number.editor';
-import {DropdownEditor} from '../../models/editors/dropdown.editor';
+import {DatePickerEditor} from '../../editors/datepicker.editor';
+import {NumberEditor} from '../../editors/number.editor';
+import {DropdownEditor} from '../../editors/dropdown.editor';
 
 @Component({
   entryComponents: [
