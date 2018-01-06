@@ -11,8 +11,10 @@ export class DropdownComponent extends BaseReusableComponent {
   @ViewChild('dropdown', {read: ElementRef}) dropdown: ElementRef;
 
   selectItems: SelectItem[] = [];
-  placement: string;
+  placement = 'bottom-left';
   selectedText = 'Select an Item';
+  open = false;
+  autoClose = true;
 
   onInit(ctrl: AbstractControl): void {
     this.dropdown.nativeElement.setAttribute('aria-labelledby', this.fieldName);

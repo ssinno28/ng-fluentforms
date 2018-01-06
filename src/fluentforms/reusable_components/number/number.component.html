@@ -8,7 +8,7 @@
       [step]="step"
       type="number"
       class="form-control"
-      [placeholder]="placeholderTxt"
+      [placeholder]="placeholderTxt === undefined ? '' : placeholderTxt"
       (keyup)="updateNum()"
       [formControlName]="fieldName"/>
 

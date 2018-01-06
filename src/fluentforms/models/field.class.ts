@@ -2,6 +2,8 @@ import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
+import {EditorOptions} from './options/editoroptions.class';
+import {IEditor} from '../interfaces/editor.interface';
 
 export class Field {
   public name: string;
@@ -30,16 +32,18 @@ export class Field {
     return this;
   }
 
-  editor(editorType: any, options: any): void {
+  editor<T extends IEditor>(e: new () => T): T {
+    const options = new EditorOptions();
     options.fieldName = this.name;
     options.formGroup = this.fieldFormGroup;
     options.label = this._fieldLabel;
     options.validations = this._validations;
     options.srOnly = this._srOnly;
 
-    const fieldEditor = new editorType();
-    fieldEditor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);
+    const editor = new e();
+    editor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);
     this.fieldFormGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
+    return editor;
   }
 
   getValidators(): ValidatorFn {

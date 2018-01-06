@@ -1,7 +1,7 @@
 import {FormGroup} from '@angular/forms';
 import {Validation} from '../validation.class';
 
-export abstract class EditorOptions {
+export class EditorOptions {
   fieldName: string;
   formGroup: FormGroup;
   label: string;

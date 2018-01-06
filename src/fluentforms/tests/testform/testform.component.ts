@@ -3,16 +3,12 @@ import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
-import {DatePickerOptions} from '../../models/options/datepickeroptions.class';
-import {DatePickerEditor} from '../../models/editors/datepicker.editor';
 import {SingleLineEditor} from '../../models/editors/singleline.editor';
-import {SingleLineOptions} from '../../models/options/singlelineoptions.class';
-import {NumberEditor} from '../../models/editors/number.editor';
-import {NumberOptions} from '../../models/options/numberoptions.class';
 import {NumberComponent} from '../../reusable_components/number/number.component';
 import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
+import {DatePickerEditor} from '../../models/editors/datepicker.editor';
+import {NumberEditor} from '../../models/editors/number.editor';
 import {DropdownEditor} from '../../models/editors/dropdown.editor';
-import {DropdownOptions} from '../../models/options/dropdownoptions.class';
 
 @Component({
   entryComponents: [
@@ -40,30 +36,33 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
     this.field('title')
       .label('Title')
       .required('The title is required!')
-      .editor(SingleLineEditor, <SingleLineOptions>({
-        placeholderTxt: 'Title'
-      }));
+      .editor(SingleLineEditor)
+      .configure((component) => {
+        component.placeholderTxt = 'Title';
+      });
 
     this.field('dob')
       .label('Date of Birth')
       .required('The date of birth is required!')
-      .editor(DatePickerEditor, <DatePickerOptions>({
-        displayMonths: 1
-      }));
+      .editor(DatePickerEditor)
+      .configure((component) => {
+        component.displayMonths = 1;
+      });
 
     this.field('age')
       .label('Age')
       .required('Your age is required!')
-      .editor(NumberEditor, <NumberOptions>({
-        precision: 2,
-        nonNegative: true
-      }));
+      .editor(NumberEditor)
+      .configure((component) => {
+        component.precision = 2;
+        component.nonNegative = true;
+      });
 
     this.field('siblings')
       .label('Siblings')
-      .editor(DropdownEditor, <DropdownOptions>({
-        placement: '',
-        selectItems: [
+      .editor(DropdownEditor)
+      .configure((component) => {
+        component.selectItems = [
           {
             text: 'test',
             value: 0,
@@ -73,7 +72,7 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
             text: 'test 2',
             value: 1,
             selected: true
-          }]
-      }));
+          }];
+      });
   }
 }
