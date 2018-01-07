@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
 import {NumberComponent} from '../../reusable_components/number/number.component';
 import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
+import {TimePickerComponent} from '../../reusable_components/timepicker/timepicker.component';
 
 describe('TestFormComponent', () => {
   let component: TestFormComponent;
@@ -21,7 +22,9 @@ describe('TestFormComponent', () => {
         SingleLineTextComponent,
         DatePickerComponent,
         NumberComponent,
-        DropdownComponent],
+        DropdownComponent,
+        TimePickerComponent
+      ],
       imports: [
         HttpClientModule,
         CommonModule,

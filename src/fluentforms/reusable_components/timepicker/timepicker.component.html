@@ -2,19 +2,19 @@
   <label [ngClass]="{'sr-only': srOnly}" class="col-xs-12 col-sm-2 control-label">
     {{label}}
   </label>
-  <div class="input-group col-xs-12 col-sm-10">
-    <input
-      [displayMonths]="displayMonths"
-      class="form-control"
-      placeholder="yyyy-mm-dd"
+  <div class="col-xs-12 col-sm-10">
+    <ngb-timepicker
+      [(ngModel)]="time"
       [formControlName]="fieldName"
-      [name]="fieldName"
-      ngbDatepicker
-      #d="ngbDatepicker">
-
-    <button class="input-group-addon" (click)="d.toggle()" type="button">
-      <span class="fa fa-calendar"></span>
-    </button>
+      [hourStep]="hourStep"
+      [secondStep]="secondStep"
+      [meridian]="meridian"
+      [minuteStep]="minuteStep"
+      [readonlyInputs]="readonlyInputs"
+      [size]="size"
+      [spinners]="spinners"
+      [seconds]="seconds">
+    </ngb-timepicker>
     <div *ngIf="errors.length > 0;" class="col-xs-12 col-sm-10 col-sm-offset-2 errors">
       <span *ngFor="let error of errors;" class="help-block">
         {{error}}

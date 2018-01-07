@@ -9,13 +9,16 @@ import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.com
 import {DatePickerEditor} from '../../editors/datepicker.editor';
 import {NumberEditor} from '../../editors/number.editor';
 import {DropdownEditor} from '../../editors/dropdown.editor';
+import {TimePickerEditor} from '../../editors/timepicker.editor';
+import {TimePickerComponent} from '../../reusable_components/timepicker/timepicker.component';
 
 @Component({
   entryComponents: [
     SingleLineTextComponent,
     DatePickerComponent,
     NumberComponent,
-    DropdownComponent
+    DropdownComponent,
+    TimePickerComponent
   ],
   template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)">' +
   '<ng-template #dynamicInsert></ng-template>' +
@@ -48,6 +51,11 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
       .configure((component) => {
         component.displayMonths = 1;
       });
+
+    this.field('tob')
+      .label('Time of Birth')
+      .required('The time of birth is required!')
+      .editor(TimePickerEditor);
 
     this.field('age')
       .label('Age')

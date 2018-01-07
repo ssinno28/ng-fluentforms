@@ -8,7 +8,7 @@ export class BaseReusableComponent implements OnInit {
   validations: Validation[];
   label: string;
   srOnly: boolean;
-  errors: Validation[];
+  errors: string[];
 
   onInit(ctrl: AbstractControl): void {
   }
@@ -35,7 +35,7 @@ export class BaseReusableComponent implements OnInit {
         const valid = validation.validator(ctrl);
 
         if (valid != null) {
-          this.errors.push(validation);
+          this.errors.push(validation.message);
         }
       }
     }
