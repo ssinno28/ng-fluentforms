@@ -1,7 +1,7 @@
 import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
+import {ComponentFactoryResolver, TemplateRef, ViewContainerRef} from '@angular/core';
 import {IEditor} from '../interfaces/editor.interface';
 import {EditorOptions} from './editoroptions.class';
 
@@ -15,6 +15,7 @@ export class Field {
   private _srOnly: boolean;
   private _value: any;
   private _validations: Validation[] = [];
+  private _templateRef: TemplateRef<any>;
 
   label(label: string, srOnly: boolean = false): Field {
     this._fieldLabel = label;
@@ -24,6 +25,11 @@ export class Field {
 
   formGroup(formGroup: FormGroup): Field {
     this.fieldFormGroup = formGroup;
+    return this;
+  }
+
+  fieldTpl(templateRef: TemplateRef<any>): Field {
+    this._templateRef = templateRef;
     return this;
   }
 
@@ -39,6 +45,7 @@ export class Field {
     options.label = this._fieldLabel;
     options.validations = this._validations;
     options.srOnly = this._srOnly;
+    options.fieldTpl = this._templateRef;
 
     const editor = new e();
     editor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);

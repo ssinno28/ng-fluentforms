@@ -16,6 +16,7 @@ export abstract class Editor<T extends BaseReusableComponent> implements IEditor
     dynamicComponent.label = options.label;
     dynamicComponent.validations = options.validations;
     dynamicComponent.srOnly = options.srOnly;
+    dynamicComponent.fieldTpl = options.fieldTpl;
 
     this.dynamicComponent = dynamicComponent;
   }
