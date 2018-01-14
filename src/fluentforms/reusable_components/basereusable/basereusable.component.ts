@@ -1,4 +1,4 @@
-import {OnInit} from '@angular/core';
+import {EventEmitter, OnInit} from '@angular/core';
 import {Validation} from '../../models/validation.class';
 import {AbstractControl, FormGroup} from '@angular/forms';
 
@@ -9,6 +9,7 @@ export class BaseReusableComponent implements OnInit {
   label: string;
   srOnly: boolean;
   errors: string[];
+  eventEmitter: EventEmitter<any>;
 
   onInit(ctrl: AbstractControl): void {
   }
@@ -31,6 +32,8 @@ export class BaseReusableComponent implements OnInit {
     this.errors = [];
 
     if (ctrl.invalid && (ctrl.dirty || ctrl.touched)) {
+      this.eventEmitter.emit({wasValidated: true});
+
       for (const validation of this.validations) {
         const valid = validation.validator(ctrl);
 

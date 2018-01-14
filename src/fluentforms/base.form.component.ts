@@ -8,6 +8,8 @@ export class BaseFormComponent {
   protected entityForm: FormGroup;
   protected fields: Field[] = [];
 
+  wasValidated = false;
+
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               protected _formBuilder: FormBuilder) {
 
@@ -20,6 +22,12 @@ export class BaseFormComponent {
     field.fieldViewContainerRef = this.dynamicInsert;
     field.fieldFormGroup = this.entityForm;
     field.componentFactoryResolver = this.componentFactoryResolver;
+
+    field.eventEmitter.subscribe((value) => {
+      if (value.wasValidated) {
+        this.wasValidated = true;
+      }
+    });
 
     this.fields.push(field);
     return field;

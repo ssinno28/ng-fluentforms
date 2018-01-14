@@ -20,7 +20,7 @@ import {TimePickerComponent} from '../../reusable_components/timepicker/timepick
     DropdownComponent,
     TimePickerComponent
   ],
-  template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)">' +
+  template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)" novalidate>' +
   '<ng-template #dynamicInsert></ng-template>' +
   '<button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>' +
   '</form>'
