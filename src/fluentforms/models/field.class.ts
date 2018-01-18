@@ -1,7 +1,7 @@
 import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
 import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
-import {ComponentFactoryResolver, TemplateRef, ViewContainerRef} from '@angular/core';
+import {ComponentFactoryResolver, EventEmitter, ViewContainerRef} from '@angular/core';
 import {IEditor} from '../interfaces/editor.interface';
 import {EditorOptions} from './editoroptions.class';
 
@@ -10,6 +10,7 @@ export class Field {
   public fieldViewContainerRef: ViewContainerRef;
   public fieldFormGroup: FormGroup;
   public componentFactoryResolver: ComponentFactoryResolver;
+  public eventEmitter = new EventEmitter<any>();
 
   private _fieldLabel: string;
   private _srOnly: boolean;
@@ -45,7 +46,7 @@ export class Field {
     options.label = this._fieldLabel;
     options.validations = this._validations;
     options.srOnly = this._srOnly;
-    options.fieldTpl = this._templateRef;
+    options.eventEmitter = this.eventEmitter;
 
     const editor = new e();
     editor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);

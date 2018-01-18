@@ -1,6 +1,6 @@
 import {FormGroup} from '@angular/forms';
 import {Validation} from './validation.class';
-import {TemplateRef} from '@angular/core';
+import {EventEmitter} from '@angular/core';
 
 export class EditorOptions {
   fieldName: string;
@@ -8,5 +8,5 @@ export class EditorOptions {
   label: string;
   validations: Validation[];
   srOnly: boolean;
-  fieldTpl: TemplateRef<any>;
+  eventEmitter: EventEmitter<any>;
 }

@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, TemplateRef, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
@@ -20,11 +20,12 @@ import {TimePickerComponent} from '../../reusable_components/timepicker/timepick
     DropdownComponent,
     TimePickerComponent
   ],
-  templateUrl: './testform.component.html'
+  template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)" novalidate>' +
+  '<ng-template #dynamicInsert></ng-template>' +
+  '<button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>' +
+  '</form>'
 })
 export class TestFormComponent extends BaseFormComponent implements OnInit {
-  @ViewChild('appField', {read: TemplateRef}) appField: TemplateRef<any>;
-
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               _formBuilder: FormBuilder) {
 
@@ -38,13 +39,12 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
     this.field('title')
       .label('Title')
       .required('The title is required!')
-      .fieldTpl(this.appField)
       .editor(SingleLineEditor)
       .configure((component) => {
         component.placeholderTxt = 'Title';
       });
 
-   /* this.field('dob')
+    this.field('dob')
       .label('Date of Birth')
       .required('The date of birth is required!')
       .editor(DatePickerEditor)
@@ -81,6 +81,6 @@ export class TestFormComponent extends BaseFormComponent implements OnInit {
             value: 1,
             selected: true
           }];
-      });*/
+      });
   }
 }
