@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {BaseReusableComponent} from '../basereusable/basereusable.component';
-import {NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import {BaseReusableComponent} from '../../../fluentforms';
 
 @Component({
   selector: 'app-datepicker',

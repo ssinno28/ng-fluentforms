@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {BaseReusableComponent} from '../basereusable/basereusable.component';
+import {BaseReusableComponent} from '../../../fluentforms';
 
 @Component({
   selector: 'app-singlelinetext',

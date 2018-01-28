@@ -1,4 +1,4 @@
-import {Editor} from './base.editor';
+import {Editor} from '../../fluentforms';
 import {SingleLineTextComponent} from '../reusable_components/singlelinetext/singlelinetext.component';
 
 export class SingleLineEditor extends Editor<SingleLineTextComponent> {

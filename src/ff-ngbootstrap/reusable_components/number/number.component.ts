@@ -1,8 +1,7 @@
-import {Component, ElementRef, ViewChild, ViewContainerRef} from '@angular/core';
-import {BaseReusableComponent} from '../basereusable/basereusable.component';
+import {Component} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
+import {BaseReusableComponent} from '../../../fluentforms';
 
 @Component({
   selector: 'app-number',

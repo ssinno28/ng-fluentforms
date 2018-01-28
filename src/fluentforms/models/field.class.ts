@@ -16,7 +16,6 @@ export class Field {
   private _srOnly: boolean;
   private _value: any;
   private _validations: Validation[] = [];
-  private _templateRef: TemplateRef<any>;
 
   label(label: string, srOnly: boolean = false): Field {
     this._fieldLabel = label;
@@ -26,11 +25,6 @@ export class Field {
 
   formGroup(formGroup: FormGroup): Field {
     this.fieldFormGroup = formGroup;
-    return this;
-  }
-
-  fieldTpl(templateRef: TemplateRef<any>): Field {
-    this._templateRef = templateRef;
     return this;
   }
 

@@ -1,5 +1,4 @@
 import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
-import {BaseFormComponent} from '../../base.form.component';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
 import {FormBuilder} from '@angular/forms';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
@@ -11,6 +10,7 @@ import {NumberEditor} from '../../editors/number.editor';
 import {DropdownEditor} from '../../editors/dropdown.editor';
 import {TimePickerEditor} from '../../editors/timepicker.editor';
 import {TimePickerComponent} from '../../reusable_components/timepicker/timepicker.component';
+import {BaseFormComponent} from '../../../fluentforms';
 
 @Component({
   entryComponents: [

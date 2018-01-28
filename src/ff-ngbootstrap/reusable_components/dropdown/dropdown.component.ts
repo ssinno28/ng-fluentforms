@@ -1,7 +1,7 @@
-import {Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {BaseReusableComponent} from '../basereusable/basereusable.component';
-import {SelectItem} from '../../interfaces/selectitem.interface';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {AbstractControl} from '@angular/forms';
+import {BaseReusableComponent} from '../../../fluentforms';
+import {SelectItem} from '../../../fluentforms';
 
 @Component({
   selector: 'app-dropdown',
