@@ -32,9 +32,4 @@ export class BaseFormComponent {
     this.fields.push(field);
     return field;
   }
-
-  itemSelected(fg: FormGroup) {
-    const selected: boolean = !Boolean(fg.get('selected').value);
-    fg.setControl('selected', new FormControl(selected));
-  }
 }
