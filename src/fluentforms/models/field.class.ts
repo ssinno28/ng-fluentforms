@@ -9,13 +9,17 @@ export class Field {
   public name: string;
   public fieldViewContainerRef: ViewContainerRef;
   public fieldFormGroup: FormGroup;
-  public componentFactoryResolver: ComponentFactoryResolver;
   public eventEmitter = new EventEmitter<any>();
 
   private _fieldLabel: string;
   private _srOnly: boolean;
   private _value: any;
   private _validations: Validation[] = [];
+
+  // private _conditionals: () => boolean[] = [];
+
+  constructor(private readonly _componentFactoryResolver: ComponentFactoryResolver) {
+  }
 
   label(label: string, srOnly: boolean = false): Field {
     this._fieldLabel = label;
@@ -33,7 +37,7 @@ export class Field {
     return this;
   }
 
-  editor<T extends IEditor>(e: new () => T): T {
+  editor<T extends IEditor>(editorType: new () => T): T {
     const options = new EditorOptions();
     options.fieldName = this.name;
     options.formGroup = this.fieldFormGroup;
@@ -42,8 +46,8 @@ export class Field {
     options.srOnly = this._srOnly;
     options.eventEmitter = this.eventEmitter;
 
-    const editor = new e();
-    editor.create(this.componentFactoryResolver, this.fieldViewContainerRef, options);
+    const editor = new editorType();
+    editor.create(this._componentFactoryResolver, this.fieldViewContainerRef, options);
     this.fieldFormGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
     return editor;
   }
@@ -123,4 +127,9 @@ export class Field {
     validation.validator = validator;
     return this as Field;
   }
+
+  /*  conditional(conditional: () => boolean): Field {
+      this._conditionals.push(conditional());
+      return this as Field;
+    }*/
 }
