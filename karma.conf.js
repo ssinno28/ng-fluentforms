@@ -5,10 +5,6 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
-    files: [
-      'node_modules/bootstrap/dist/css/bootstrap.css',
-      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
-    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),

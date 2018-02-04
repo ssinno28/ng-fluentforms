@@ -1,24 +1,27 @@
 import {Validation} from './validation.class';
 import {CustomValidators} from '../custom-validators';
-import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ComponentFactoryResolver, EventEmitter, ViewContainerRef} from '@angular/core';
 import {IEditor} from '../interfaces/editor.interface';
 import {EditorOptions} from './editoroptions.class';
+import {AsyncValidation} from './asyncvalidation.class';
 
 export class Field {
   public name: string;
-  public fieldViewContainerRef: ViewContainerRef;
-  public fieldFormGroup: FormGroup;
   public eventEmitter = new EventEmitter<any>();
 
   private _fieldLabel: string;
   private _srOnly: boolean;
-  private _value: any;
   private _validations: Validation[] = [];
+  private _asyncValidations: AsyncValidation[] = [];
+  private _formControl: FormControl;
 
   // private _conditionals: () => boolean[] = [];
 
-  constructor(private readonly _componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private readonly _componentFactoryResolver: ComponentFactoryResolver,
+              private _fieldViewContainerRef: ViewContainerRef,
+              private _fieldFormGroup: FormGroup,
+              private _value: any) {
   }
 
   label(label: string, srOnly: boolean = false): Field {
@@ -28,34 +31,43 @@ export class Field {
   }
 
   formGroup(formGroup: FormGroup): Field {
-    this.fieldFormGroup = formGroup;
+    this._fieldFormGroup = formGroup;
     return this;
   }
 
   viewContainerRef(viewContainerRef: ViewContainerRef): Field {
-    this.fieldViewContainerRef = viewContainerRef;
+    this._fieldViewContainerRef = viewContainerRef;
     return this;
   }
 
   editor<T extends IEditor>(editorType: new () => T): T {
     const options = new EditorOptions();
     options.fieldName = this.name;
-    options.formGroup = this.fieldFormGroup;
+    options.formGroup = this._fieldFormGroup;
     options.label = this._fieldLabel;
     options.validations = this._validations;
     options.srOnly = this._srOnly;
     options.eventEmitter = this.eventEmitter;
 
     const editor = new editorType();
-    editor.create(this._componentFactoryResolver, this.fieldViewContainerRef, options);
-    this.fieldFormGroup.addControl(this.name, new FormControl(this._value, this.getValidators()));
+    editor.create(this._componentFactoryResolver, this._fieldViewContainerRef, options);
+
+    this._formControl = new FormControl(this._value, this.getValidators(), this.getAsyncValidators());
+    this._fieldFormGroup.addControl(this.name, this._formControl);
     return editor;
   }
 
-  getValidators(): ValidatorFn {
+  private getValidators(): ValidatorFn {
     return Validators.compose(this._validations.map((validation) => {
       return validation.validator;
     }));
+  }
+
+  private getAsyncValidators(): AsyncValidatorFn {
+    return Validators.composeAsync(this._asyncValidations.map(
+      (validation) => {
+        return validation.validator;
+      }));
   }
 
   required(message: string): Field {
@@ -125,6 +137,17 @@ export class Field {
     const validation = new Validation();
     validation.message = message;
     validation.validator = validator;
+
+    this._validations.push(validation);
+    return this as Field;
+  }
+
+  asyncValidator(message: string, validator: (control: AbstractControl) => Promise<ValidationErrors | null>): Field {
+    const asyncValidation = new AsyncValidation();
+    asyncValidation.message = message;
+    asyncValidation.validator = validator;
+
+    this._asyncValidations.push(asyncValidation);
     return this as Field;
   }
 

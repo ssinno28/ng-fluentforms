@@ -2,7 +2,7 @@ import {EventEmitter, OnInit} from '@angular/core';
 import {Validation} from '../../models/validation.class';
 import {AbstractControl, FormGroup} from '@angular/forms';
 
-export class BaseReusableComponent implements OnInit {
+export abstract class BaseFieldComponent implements OnInit {
   fieldName: string;
   formGroup: FormGroup;
   validations: Validation[];
@@ -10,6 +10,7 @@ export class BaseReusableComponent implements OnInit {
   srOnly: boolean;
   errors: string[] = [];
   eventEmitter: EventEmitter<any>;
+  disabled = false;
 
   onInit(ctrl: AbstractControl): void {
   }
