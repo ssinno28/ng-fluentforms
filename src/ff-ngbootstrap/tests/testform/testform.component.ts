@@ -1,11 +1,15 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
 import {SingleLineTextComponent} from '../../reusable_components/singlelinetext/singlelinetext.component';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {DatePickerComponent} from '../../reusable_components/datepicker/datepicker.component';
+import {SingleLineEditor} from '../../editors/singleline.editor';
 import {NumberComponent} from '../../reusable_components/number/number.component';
 import {DropdownComponent} from '../../reusable_components/dropdown/dropdown.component';
+import {DatePickerEditor} from '../../editors/datepicker.editor';
+import {NumberEditor} from '../../editors/number.editor';
+import {DropdownEditor} from '../../editors/dropdown.editor';
+import {TimePickerEditor} from '../../editors/timepicker.editor';
 import {TimePickerComponent} from '../../reusable_components/timepicker/timepicker.component';
-import {TestFieldBuilder} from './testfieldbuilder';
 import {BaseFormComponent} from '../../../fluentforms';
 
 @Component({
@@ -22,22 +26,61 @@ import {BaseFormComponent} from '../../../fluentforms';
   '</form>'
 })
 export class TestFormComponent extends BaseFormComponent implements OnInit {
-  @ViewChild('dynamicInsert', {read: ViewContainerRef}) dynamicInsert: ViewContainerRef;
-  entityForm: FormGroup;
+  constructor(protected componentFactoryResolver: ComponentFactoryResolver,
+              _formBuilder: FormBuilder) {
 
-  constructor(protected readonly _componentFactoryResolver: ComponentFactoryResolver,
-              protected readonly _formBuilder: FormBuilder) {
-
-    super(_componentFactoryResolver, _formBuilder);
-    this.entityForm = this._formBuilder.group({});
+    super(componentFactoryResolver, _formBuilder);
   }
 
   save(value: any, valid: boolean): void {
   }
 
   ngOnInit(): void {
-    this.fieldBuilder(TestFieldBuilder)
-      .formGroup(this.entityForm)
-      .viewContainerRef(this.dynamicInsert);
+    this.field('title')
+      .label('Title')
+      .required('The title is required!')
+      .editor(SingleLineEditor)
+      .configure((component) => {
+        component.placeholderTxt = 'Title';
+      });
+
+    this.field('dob')
+      .label('Date of Birth')
+      .required('The date of birth is required!')
+      .editor(DatePickerEditor)
+      .configure((component) => {
+        component.displayMonths = 1;
+      });
+
+    this.field('tob')
+      .label('Time of Birth')
+      .required('The time of birth is required!')
+      .editor(TimePickerEditor);
+
+    this.field('age')
+      .label('Age')
+      .required('Your age is required!')
+      .editor(NumberEditor)
+      .configure((component) => {
+        component.precision = 2;
+        component.nonNegative = true;
+      });
+
+    this.field('siblings')
+      .label('Siblings')
+      .editor(DropdownEditor)
+      .configure((component) => {
+        component.selectItems = [
+          {
+            text: 'test',
+            value: 0,
+            selected: false
+          },
+          {
+            text: 'test 2',
+            value: 1,
+            selected: true
+          }];
+      });
   }
 }
