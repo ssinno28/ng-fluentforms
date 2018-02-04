@@ -3,7 +3,7 @@ import {FormGroup, FormControl, FormBuilder} from '@angular/forms';
 import {Field} from './models/field.class';
 
 export class BaseFormComponent {
-  @ViewChild('dynamicInsert', {read: ViewContainerRef}) dynamicInsert: ViewContainerRef;
+  @ViewChild('fieldsInsert', {read: ViewContainerRef}) fieldsInsert: ViewContainerRef;
 
   protected entityForm: FormGroup;
   protected fields: Field[] = [];
@@ -17,11 +17,10 @@ export class BaseFormComponent {
   }
 
   field(name: string): Field {
-    const field = new Field();
+    const field = new Field(this.componentFactoryResolver);
     field.name = name;
-    field.fieldViewContainerRef = this.dynamicInsert;
+    field.fieldViewContainerRef = this.fieldsInsert;
     field.fieldFormGroup = this.entityForm;
-    field.componentFactoryResolver = this.componentFactoryResolver;
 
     field.eventEmitter.subscribe((value) => {
       if (value.wasValidated) {

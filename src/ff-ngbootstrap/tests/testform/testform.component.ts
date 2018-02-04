@@ -21,7 +21,7 @@ import {BaseFormComponent} from '../../../fluentforms';
     TimePickerComponent
   ],
   template: '<form [formGroup]="entityForm" (ngSubmit)="save(entityForm.value, entityForm.valid)" novalidate>' +
-  '<ng-template #dynamicInsert></ng-template>' +
+  '<ng-template #fieldsInsert></ng-template>' +
   '<button type="submit" class="btn btn-primary btn-round btn-block">Submit</button>' +
   '</form>'
 })
