@@ -5,7 +5,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {BaseFormComponent} from './base.form.component';
-import {BaseFieldComponent, Editor} from '../../';
+import {Editor} from '../../editors/base.editor';
+import {BaseFieldComponent} from '../basefield/basefield.component';
 
 class TestEditor extends Editor<TestFieldComponent> {
   component = TestFieldComponent;
