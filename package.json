@@ -2,15 +2,19 @@
   "name": "ng-fluentforms",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "./src/app/fluentforms/index.ts",
+  "main": "./src/app/index.ts",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "./src/app/index.ts"
+    }
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prepublish": "tsc"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -29,14 +33,14 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.3",
-    "@angular/compiler-cli": "^5.1.2",
+    "@angular/cli": "1.6.8",
+    "@angular/compiler-cli": "5.2.4",
     "@angular/language-service": "^5.1.2",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "~8.5.2",
-    "codelyzer": "~4.0.2",
-    "jasmine-core": "~2.8.0",
+    "@types/node": "~8.9.1",
+    "codelyzer": "~4.1.0",
+    "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",
@@ -44,10 +48,11 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.2.2",
+    "ng-packagr": "^2.0.0",
+    "protractor": "~5.3.0",
     "ts-node": "~4.1.0",
-    "tslint": "~5.8.0",
-    "typescript": "~2.6.2",
+    "tslint": "~5.9.1",
+    "typescript": "~2.7.1",
     "webpack": "^3.10.0"
   }
 }
