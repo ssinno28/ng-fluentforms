@@ -1,0 +1,17 @@
+<div [formGroup]="formGroup">
+  <label [ngClass]="{'sr-only': srOnly}" [for]="fieldName" class="form-control-label">
+    {{label}}
+  </label>
+  <div class="input-group">
+    <input
+      class="form-control"
+      [formControlName]="fieldName"
+      [name]="fieldName"
+      [id]="fieldName"
+      type="text">
+  </div>
+
+  <div *ngFor="let error of errors;" class="invalid-feedback">
+    {{error}}
+  </div>
+</div>

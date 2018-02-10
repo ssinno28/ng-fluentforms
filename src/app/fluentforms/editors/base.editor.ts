@@ -2,40 +2,55 @@ import {ComponentFactoryResolver, ViewContainerRef} from '@angular/core';
 import {BaseFieldComponent} from '../components/basefield/basefield.component';
 import {EditorOptions} from '../models/editoroptions.class';
 import {IEditor} from '../interfaces/editor.interface';
+import {ComponentRef} from '@angular/core/src/linker/component_factory';
 
 export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
   abstract component: any;
 
-  private _dynamicComponent: T;
-  private _viewContainerRef: ViewContainerRef;
+  protected dynamicComponent: T;
+  protected viewContainerRef: ViewContainerRef;
+  protected index: number;
+  protected componentRef: ComponentRef<any>;
 
-  create(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: EditorOptions): void {
+  add(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: EditorOptions, index?: number): void {
     const componentFactory = componentFactoryResolver.resolveComponentFactory(this.component);
-    const dynamicComponent = viewContainerRef.createComponent(componentFactory).instance as T;
+    this.componentRef = viewContainerRef.createComponent(componentFactory, index);
+    this.dynamicComponent = this.componentRef.instance as T;
 
-    dynamicComponent.fieldName = options.fieldName;
-    dynamicComponent.formGroup = options.formGroup;
-    dynamicComponent.label = options.label;
-    dynamicComponent.validations = options.validations;
-    dynamicComponent.srOnly = options.srOnly;
-    dynamicComponent.eventEmitter = options.eventEmitter;
+    this.dynamicComponent.fieldName = options.fieldName;
+    this.dynamicComponent.formGroup = options.formGroup;
+    this.dynamicComponent.label = options.label;
+    this.dynamicComponent.validations = options.validations;
+    this.dynamicComponent.srOnly = options.srOnly;
+    this.dynamicComponent.eventEmitter = options.eventEmitter;
 
-    this._dynamicComponent = dynamicComponent;
-    this._viewContainerRef = viewContainerRef;
+    this.viewContainerRef = viewContainerRef;
+  }
+
+  getIndex(): number {
+    return this.viewContainerRef.indexOf(this.componentRef.hostView);
+  }
+
+  remove() {
+    const formGroup = this.dynamicComponent.formGroup;
+    const controlName = this.dynamicComponent.fieldName;
+
+    formGroup.removeControl(controlName);
+    this.componentRef.destroy();
   }
 
   configure(callBack: (dynamicComponent: T) => void): Editor<T> {
-    callBack(this._dynamicComponent);
+    callBack(this.dynamicComponent);
     return this;
   }
 
   disable(): Editor<T> {
-    this._dynamicComponent.disabled = true;
+    this.dynamicComponent.disabled = true;
     return this;
   }
 
   enable(): Editor<T> {
-    this._dynamicComponent.disabled = false;
+    this.dynamicComponent.disabled = false;
     return this;
   }
 }

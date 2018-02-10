@@ -7,21 +7,27 @@ import {EditorOptions} from './editoroptions.class';
 import {AsyncValidation} from './asyncvalidation.class';
 
 export class Field {
-  public name: string;
-  public eventEmitter = new EventEmitter<any>();
 
+  private _eventEmitter = new EventEmitter<any>();
   private _fieldLabel: string;
   private _srOnly: boolean;
   private _validations: Validation[] = [];
   private _asyncValidations: AsyncValidation[] = [];
   private _formControl: FormControl;
 
-  // private _conditionals: () => boolean[] = [];
-
-  constructor(private readonly _componentFactoryResolver: ComponentFactoryResolver,
+  constructor(private readonly _name: string,
+              private readonly _componentFactoryResolver: ComponentFactoryResolver,
               private _fieldViewContainerRef: ViewContainerRef,
               private _fieldFormGroup: FormGroup,
               private _value: any) {
+  }
+
+  public get name(): string {
+    return this._name;
+  }
+
+  public get eventEmitter(): EventEmitter<any> {
+    return this._eventEmitter;
   }
 
   label(label: string, srOnly: boolean = false): Field {
@@ -40,7 +46,7 @@ export class Field {
     return this;
   }
 
-  editor<T extends IEditor>(editorType: new () => T): T {
+  editor<T extends IEditor>(editorType: new () => T, index?: number): T {
     const options = new EditorOptions();
     options.fieldName = this.name;
     options.formGroup = this._fieldFormGroup;
@@ -50,7 +56,7 @@ export class Field {
     options.eventEmitter = this.eventEmitter;
 
     const editor = new editorType();
-    editor.create(this._componentFactoryResolver, this._fieldViewContainerRef, options);
+    editor.add(this._componentFactoryResolver, this._fieldViewContainerRef, options, index);
 
     this._formControl = new FormControl(this._value, this.getValidators(), this.getAsyncValidators());
     this._fieldFormGroup.addControl(this.name, this._formControl);
@@ -150,9 +156,4 @@ export class Field {
     this._asyncValidations.push(asyncValidation);
     return this as Field;
   }
-
-  /*  conditional(conditional: () => boolean): Field {
-      this._conditionals.push(conditional());
-      return this as Field;
-    }*/
 }
