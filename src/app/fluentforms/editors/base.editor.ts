@@ -9,7 +9,6 @@ export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
 
   protected dynamicComponent: T;
   protected viewContainerRef: ViewContainerRef;
-  protected index: number;
   protected componentRef: ComponentRef<any>;
 
   add(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: EditorOptions, index?: number): void {
