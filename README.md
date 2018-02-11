@@ -61,7 +61,7 @@ export class DemoFormComponent extends BaseFormComponent {
 
     super(componentFactoryResolver, _formBuilder);
   }
-
+ 
   onInit() {
     this.field('firstName')
       .required('The first Name is required!')
@@ -79,7 +79,7 @@ export class DemoFormComponent extends BaseFormComponent {
 ## BaseFieldComponent
 
 Here I've set up a component called SinglelineComponent that extends BaseFieldComponent. In order to understand what the BaseFieldComponent offers
-it is a good idea to look at the [implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/components/basefield/basefield.component.ts){:target="_blank"} as it is pretty simple.
+it is a good idea to look at the [implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/components/basefield/basefield.component.ts) {:target="_blank"} as it is pretty simple.
 
 ## Editor
 
