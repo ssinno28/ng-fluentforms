@@ -115,6 +115,10 @@ and here is my template (using bootstrap here):
 Next is the SinglelineEditor, this extends Editor base class and basically operates as the liaison between the form component and our input component. So why do we need an intermediary between
 the form and the component? Well for two reasons, first off dynamically creating and removing components is not simple, the base editor class contains references 
 to the ComponentRef, ViewContainerRef and the actual component itself. By having the editor class manage these types we can easily move, remove and create components as needed.
+
+In order to get an idea of what is available from the base editor class, you'll need to take a look at the actual 
+[implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/editors/base.editor.ts).
+
 Secondly, the framework is setup to allow developers to extend the their own Editor class (in this case SinglelineEditor) and chain in more methods after setting up the field.
 
 Here is an example:
@@ -123,8 +127,9 @@ Here is an example:
 export class SinglelineEditor extends Editor<SinglelineComponent> {
   component = SinglelineComponent;
   
-  setValue(value: string){
+  setValue(value: string): Editor<T> {
     this.dynamicComponent.value = value;
+    return this;
   }
 }
 
@@ -135,7 +140,8 @@ export class SinglelineEditor extends Editor<SinglelineComponent> {
       .setValue('This is cool!!');
 ```
 
-The neat thing about this implementation is that Typescript can pick up the editor class definition and provide intelisense for the methods on your editor. 
+The neat thing about this implementation is that Typescript can pick up the editor class definition and provide intelisense for the methods on your editor. One other thing to mention is that 
+in most cases you will want to return ```this``` so you can chain more methods after that. 
 
 Lastly, is the actual form itself. The BaseFormComponent has a method called field on it which basically where all the magic begins. It instantiates a new field, passes in the necessary default
 values and then you are off and running!
