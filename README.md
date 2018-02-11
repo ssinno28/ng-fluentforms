@@ -79,7 +79,7 @@ export class DemoFormComponent extends BaseFormComponent {
 ## BaseFieldComponent
 
 Here I've set up a component called SinglelineComponent that extends BaseFieldComponent. In order to understand what the BaseFieldComponent offers
-it is a good idea to look at the [implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/components/basefield/basefield.component.ts) {:target="_blank"} as it is pretty simple.
+it is a good idea to look at the [implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/components/basefield/basefield.component.ts) as it is pretty simple.
 
 ## Editor
 
@@ -88,7 +88,7 @@ the form and the component? Well for two reasons, first off dynamically creating
 to the ComponentRef, ViewContainerRef and the actual component itself. By having the editor class manage these types we can easily move, remove and create components as needed.
 
 In order to get an idea of what is available from the base editor class, you'll need to take a look at the actual 
-[implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/editors/base.editor.ts){:target="_blank"}.
+[implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/editors/base.editor.ts).
 
 Secondly, the framework is setup to allow developers to extend their own Editor class (in this case SinglelineEditor) and chain in more methods after setting up the field.
 
