@@ -76,8 +76,12 @@ export class DemoFormComponent extends BaseFormComponent {
 }
 ```
 
+## BaseFieldComponent
+
 Here I've set up a component called SinglelineComponent that extends BaseFieldComponent. In order to understand what the BaseFieldComponent offers
 it is a good idea to look at the [implementation](https://github.com/ssinno28/ng-fluentforms/blob/master/src/app/fluentforms/components/basefield/basefield.component.ts){:target="_blank"} as it is pretty simple.
+
+## Editor
 
 Next is the SinglelineEditor, this extends Editor base class and basically operates as the liaison between the form component and our input component. So why do we need an intermediary between
 the form and the component? Well for two reasons, first off dynamically creating and removing components is not simple, the base editor class contains references 
@@ -122,6 +126,8 @@ don't feel like setting up any custom methods you can just call the `configure` 
 
 The configure method takes a delegate that will pass in your dynamic component so you can configure anything you want with your component.
 
+## BaseFormComponent
+
 Lastly, is the actual form itself. The BaseFormComponent has a method called field on it where basically all the magic begins. It instantiates a new field, passes in the necessary default
 values and then you are off and running!
 
@@ -138,6 +144,8 @@ If you would like, you can also set up multiple form components and embed them i
 ```
 
 Each demo form will have its own form group, but the parent of their form groups will be set to parentForm.
+
+## Field
 
 The part of the framework that handles most of the complexity is the `Field` class. This is what the field method off of the BaseFormComponent returns and 
 manages the state of the form control by passing in validation as well as giving you the ability to override the defaults that are set for the fields
