@@ -12,15 +12,22 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
-    client:{
+    client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
       environment: 'dev'
+    },
+    customLaunchers: {
+      // chrome setup for travis CI using chromium
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: [' — no-sandbox']
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
