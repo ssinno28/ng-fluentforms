@@ -5,7 +5,7 @@ import {IEditor} from '../interfaces/editor.interface';
 import {ComponentRef} from '@angular/core/src/linker/component_factory';
 
 export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
-  abstract component: any;
+  protected abstract component: any;
 
   protected dynamicComponent: T;
   protected viewContainerRef: ViewContainerRef;
@@ -35,6 +35,10 @@ export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
     const controlName = this.dynamicComponent.fieldName;
 
     formGroup.removeControl(controlName);
+    this.componentRef.destroy();
+  }
+
+  destroy(): void {
     this.componentRef.destroy();
   }
 

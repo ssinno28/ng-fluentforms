@@ -7,6 +7,7 @@ import {By} from '@angular/platform-browser';
 import {BaseFormComponent} from './base.form.component';
 import {Editor} from '../../editors/base.editor';
 import {BaseFieldComponent} from '../basefield/basefield.component';
+import {SinglelineEditor} from '../../../demo/editors/SinglelineEditor';
 
 class TestEditor extends Editor<TestFieldComponent> {
   component = TestFieldComponent;
@@ -239,4 +240,18 @@ describe('BaseFormComponent', () => {
         expect(formGroupComp.fields.length).toEqual(2);
       });
   });
+
+/*  it('does not create a new editor', async () => {
+    fixture.detectChanges();
+    await fixture.whenStable()
+      .then(() => {
+        const field =
+          formGroupComp.field('firstName');
+        spyOn(field, 'addEditor');
+
+        field.editor(TestEditor);
+
+        expect(field.addEditor).not.toHaveBeenCalled();
+      });
+  });*/
 });

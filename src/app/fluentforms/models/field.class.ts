@@ -14,6 +14,7 @@ export class Field {
   private _validations: Validation[] = [];
   private _asyncValidations: AsyncValidation[] = [];
   private _formControl: FormControl;
+  private _editor: any;
 
   constructor(private readonly _name: string,
               private readonly _componentFactoryResolver: ComponentFactoryResolver,
@@ -55,11 +56,30 @@ export class Field {
     options.srOnly = this._srOnly;
     options.eventEmitter = this.eventEmitter;
 
+    this._formControl = this._fieldFormGroup.controls[this.name] as FormControl;
+    if (this._formControl === undefined) {
+      this._formControl = new FormControl(this._value, this.getValidators(), this.getAsyncValidators());
+      this._fieldFormGroup.addControl(this.name, this._formControl);
+      this.addEditor(editorType, options, index);
+    } else {
+      this._formControl.setValue(this._value);
+      this._formControl.setValidators(this.getValidators());
+      this._formControl.setAsyncValidators(this.getAsyncValidators());
+
+      if (this._editor.constructor.name !== editorType.name) {
+        this._editor.destroy();
+        this.addEditor(editorType, options, index);
+      }
+    }
+
+    return this._editor;
+  }
+
+  private addEditor<T extends IEditor>(editorType: new () => T, options: EditorOptions, index?: number): T {
     const editor = new editorType();
     editor.add(this._componentFactoryResolver, this._fieldViewContainerRef, options, index);
 
-    this._formControl = new FormControl(this._value, this.getValidators(), this.getAsyncValidators());
-    this._fieldFormGroup.addControl(this.name, this._formControl);
+    this._editor = editor;
     return editor;
   }
 
