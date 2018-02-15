@@ -28,8 +28,17 @@ export abstract class BaseFormComponent implements OnInit {
     this.onInit();
   }
 
-  field(name: string, value?: string): Field {
-    const field = new Field(name, this.componentFactoryResolver, this.fieldsInsert, this.entityForm, value);
+  field(name: string, value?: any): Field {
+    let field =
+      this.fields.find((item) => {
+        return item.name === name;
+      });
+
+    if (field !== undefined) {
+      return field;
+    }
+
+    field = new Field(name, this.componentFactoryResolver, this.fieldsInsert, this.entityForm, value);
 
     field.eventEmitter.subscribe((fieldValue) => {
       if (fieldValue.wasValidated) {

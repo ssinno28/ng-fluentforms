@@ -11,6 +11,10 @@ export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
   protected viewContainerRef: ViewContainerRef;
   protected componentRef: ComponentRef<any>;
 
+  public get index(): number {
+    return this.viewContainerRef.indexOf(this.componentRef.hostView);
+  }
+
   add(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef, options: EditorOptions, index?: number): void {
     const componentFactory = componentFactoryResolver.resolveComponentFactory(this.component);
     this.componentRef = viewContainerRef.createComponent(componentFactory, index);
@@ -24,10 +28,6 @@ export abstract class Editor<T extends BaseFieldComponent> implements IEditor {
     this.dynamicComponent.eventEmitter = options.eventEmitter;
 
     this.viewContainerRef = viewContainerRef;
-  }
-
-  getIndex(): number {
-    return this.viewContainerRef.indexOf(this.componentRef.hostView);
   }
 
   remove() {

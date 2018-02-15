@@ -215,4 +215,28 @@ describe('BaseFormComponent', () => {
           expect(field).toBeTruthy();
         });
     });
+
+  it('should get right index',
+    async () => {
+      fixture.detectChanges();
+      await fixture.whenStable()
+        .then(() => {
+          const editor =
+            formGroupComp.field('middleName')
+              .label('Middle Name')
+              .editor(TestEditor);
+
+          expect(editor.index).toEqual(2);
+        });
+    });
+
+  it('gets already created field instead of creating a new one', async () => {
+    fixture.detectChanges();
+    await fixture.whenStable()
+      .then(() => {
+        const field = formGroupComp.field('firstName');
+
+        expect(formGroupComp.fields.length).toEqual(2);
+      });
+  });
 });
