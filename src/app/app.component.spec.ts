@@ -1,11 +1,28 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {DemoModule} from './demo/demo.module';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {FluentFormsModule} from './fluentforms/fluentforms.module';
+import {HttpClientModule} from '@angular/common/http';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      imports: [
+        BrowserModule,
+        CommonModule,
+        HttpClientModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        FluentFormsModule,
+        DemoModule
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
