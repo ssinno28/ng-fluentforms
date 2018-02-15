@@ -1,6 +1,8 @@
- # ng-fluentforms - Beta
+# ng-fluentforms - Beta
  
 First thing I want to mention is that this project is currently in Beta (will be out soon) and that there is no npm package for it yet.
+
+[![Build Status](https://travis-ci.org/ssinno28/ng-fluentforms.svg?branch=master)](https://travis-ci.org/ssinno28/ng-fluentforms)
 
 ng-fluentforms is a lightweight framework built to support creating reusable form inputs. This library does not come with any components out of the box, instead
 it is meant to help with creating customizable form components of your own.
