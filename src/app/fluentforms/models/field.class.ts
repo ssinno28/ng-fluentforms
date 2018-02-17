@@ -1,6 +1,6 @@
 import {Validation} from './validation.class';
-import {CustomValidators} from '../custom-validators';
-import {AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {NumericFn} from '../custom-validators';
+import {AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {ComponentFactoryResolver, EventEmitter, ViewContainerRef} from '@angular/core';
 import {IEditor} from '../interfaces/editor.interface';
 import {EditorOptions} from './editoroptions.class';
@@ -126,7 +126,7 @@ export class Field {
   numeric(message: string): Field {
     const validation = new Validation();
     validation.message = message;
-    validation.validator = CustomValidators.isNumeric;
+    validation.validator = NumericFn;
 
     this._validations.push(validation);
     return this;
@@ -159,7 +159,7 @@ export class Field {
     return this;
   }
 
-  validator(message: string, validator: (control: AbstractControl) => { [s: string]: boolean }): Field {
+  validator(message: string, validator: ValidatorFn): Field {
     const validation = new Validation();
     validation.message = message;
     validation.validator = validator;
@@ -168,7 +168,7 @@ export class Field {
     return this as Field;
   }
 
-  asyncValidator(message: string, validator: (control: AbstractControl) => Promise<ValidationErrors | null>): Field {
+  asyncValidator(message: string, validator: AsyncValidatorFn): Field {
     const asyncValidation = new AsyncValidation();
     asyncValidation.message = message;
     asyncValidation.validator = validator;
