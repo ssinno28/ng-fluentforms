@@ -59,7 +59,8 @@ import {SinglelineEditor} from '../editors/SinglelineEditor';
   styleUrls: ['./demoform.component.css']
 })
 export class DemoFormComponent extends BaseFormComponent {
-
+  @ViewChild('fieldsInsert', {read: ViewContainerRef}) fieldsInsert: ViewContainerRef;
+  
   constructor(protected componentFactoryResolver: ComponentFactoryResolver,
               _formBuilder: FormBuilder) {
 
