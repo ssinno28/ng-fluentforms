@@ -1,5 +1,5 @@
 {
-  "name": "@ng-fluentforms/core",
+  "name": "ng-fluentforms",
   "version": "1.0.0",
   "license": "MIT",
   "main": "./src/app/index.ts",

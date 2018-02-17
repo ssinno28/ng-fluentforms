@@ -1,5 +1,7 @@
 # ng-fluentforms - Beta
 
+`npm install ng-fluentforms`
+
 [![Build Status](https://travis-ci.org/ssinno28/ng-fluentforms.svg?branch=master)](https://travis-ci.org/ssinno28/ng-fluentforms)
 
 ng-fluentforms is a lightweight framework built to support creating reusable form inputs. This library does not come with any components out of the box, instead
