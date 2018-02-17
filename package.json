@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "./src/app/index.ts",
+  "description": "ng-fluentforms is a lightweight framework built to support creating reusable form inputs. This library does not come with any components out of the box, instead it is meant to help with creating customizable form components of your own.",
   "ngPackage": {
     "lib": {
       "entryFile": "./src/app/index.ts"
@@ -54,5 +55,18 @@
     "tslint": "~5.9.1",
     "typescript": "^2.7.2",
     "webpack": "^3.11.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssinno28/ng-fluentforms"
+  },
+  "keywords": [
+    "angular2+",
+    "angular",
+    "fluentforms"
+  ],
+  "bugs": {
+    "url": "https://github.com/ssinno28/ng-fluentforms/issues"
+  },
+  "homepage": "https://github.com/ssinno28/ng-fluentforms#readme"
 }
