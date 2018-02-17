@@ -1,6 +1,6 @@
 {
   "name": "ng-fluentforms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "./src/app/index.ts",
   "description": "ng-fluentforms is a lightweight framework built to support creating reusable form inputs. This library does not come with any components out of the box, instead it is meant to help with creating customizable form components of your own.",
