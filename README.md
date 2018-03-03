@@ -14,7 +14,7 @@ Lets take a look at a quick example:
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import {BaseFieldComponent} from '@ng-fluentforms/core';
+import {BaseFieldComponent} from 'ng-fluentforms';
 
 @Component({
   selector: 'app-singleline',
@@ -42,14 +42,14 @@ export class SinglelineComponent extends BaseFieldComponent {
 }
 
 import {SinglelineComponent} from '../singleline/singleline.component';
-import {Editor} from '@ng-fluentforms/core';
+import {Editor} from 'ng-fluentforms';
 
 export class SinglelineEditor extends Editor<SinglelineComponent> {
   component = SinglelineComponent;
 }
 
 import {Component, ComponentFactoryResolver, OnInit} from '@angular/core';
-import {BaseFormComponent} from '@ng-fluentforms/core';
+import {BaseFormComponent} from 'ng-fluentforms';
 import {FormBuilder} from '@angular/forms';
 import {SinglelineEditor} from '../editors/SinglelineEditor';
 

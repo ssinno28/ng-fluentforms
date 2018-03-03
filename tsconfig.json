@@ -16,7 +16,7 @@
       "dom"
     ],
     "paths": {
-      "@ng-fluentforms/core": ["./src/app/index"]
+      "ng-fluentforms": ["./src/app/index"]
     }
   }
 }
