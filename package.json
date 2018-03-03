@@ -63,7 +63,8 @@
   "keywords": [
     "angular2+",
     "angular",
-    "fluentforms"
+    "forms",
+    "angular5"
   ],
   "bugs": {
     "url": "https://github.com/ssinno28/ng-fluentforms/issues"
