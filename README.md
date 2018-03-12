@@ -1,4 +1,4 @@
-# ng-fluentforms - Beta
+# ng-fluentforms
 
 `npm install ng-fluentforms`
 
